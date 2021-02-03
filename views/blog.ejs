@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim. Suspendisse viverra mauris ut turpis efficitur, quis congue urna sagittis. Integer in leo augue.">
+    <meta property="og:title" content="Blogs | Hauwa Lawal" >
+    <meta property="og:url" content="https://glacial-beach-73287.herokuapp.com/blogs">
+    <meta property="og:image" content="http://d3sui4ciodo0wv.cloudfront.net/fb36e6c02edd817376d88344f39d4d7a.jpg" >
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim. Suspendisse viverra mauris ut turpis efficitur, quis congue urna sagittis. Integer in leo augue.">
+    <!-- Twitter Card data -->
+	<meta name="twitter:site" content="@publisher_handle">
+	<meta name="twitter:title" content="Blogs | Hauwa Lawal">
+	<meta name="twitter:description" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim. Suspendisse viverra mauris ut turpis efficitur, quis congue urna sagittis. Integer in leo augue.">
+	<meta name="twitter:creator" content="@author_handle">
+	<!-- Twitter summary card with large image must be at least 280x150px -->
+	<meta name="twitter:image:src" content="http://d3sui4ciodo0wv.cloudfront.net/fb36e6c02edd817376d88344f39d4d7a.jpg">
+	<link rel="canonical" href="https://glacial-beach-73287.herokuapp.com/blogs">
+	<title>Blogs | Hauwa Lawal test</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/578088c2b0.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/blog.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Satisfy&display=swap" rel="stylesheet">
+</head>
+	<body>
+		<header>
+		<div class="menu-toggler">
+			<div class="bar half start"></div>
+			<div class="bar"></div>
+			<div class="bar half end"></div>
+		</div>
+		<nav class="top-nav">
+			<ul class="nav-list">
+				<li>
+					<a href="/" class="nav-link link">Home</a>
+				</li>
+				<li>
+					<a href="/#about" class="nav-link">About</a>
+				</li>
+				<li>
+					<a href="/#services" class="nav-link">Services</a>
+				</li>
+				<li>
+					<a href="/#skills" class="nav-link">Skills</a>
+				</li>
+				<li>
+					<a href="/#testimonials" class="nav-link">Testimonials</a>
+				</li>
+				<li>
+					<a href="/blogs" class="nav-link link">Blog</a>
+				</li>
+				<li>
+					<a href="/#contact" class="nav-link">Contact</a>
+				</li>
+			</ul>
+		</nav>
+	</header>
+	<!-- blogs -->
+	<section class="blog">
+		<div class="container">
+			<div class="row">
+				<div class="section-title">
+					<h1>Blog Posts</h1>
+					<p class="small"> filter through the different categories for a great experience </p>
+				</div>
+			</div>
+			<div class="row">
+				<ul >
+					<li >
+						<a class="button active" id="all">All</a>
+					</li>
+					<li>
+						<a class="button" data-filter=".popular">Goofy</a>
+					</li>
+					<li>
+						<a class="button" data-filter=".latest">Serious</a>
+					</li>
+					<li>
+						<a class="button" data-filter=".gist" >Gist</a>
+					</li>
+					<li>
+						<a class="button" data-filter=".professional">Professional</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row grid blogs-content" >
+				
+				<%blogs.slice().reverse().forEach(function(blog){ %>
+					<div class="box <%= blog.category %>"  >
+						<div class="img">
+							<a href="/blogs/<%= blog._id %>"><img src="<%= blog.image%>" alt="<%= blog.title %>"></a>
+						</div>
+						<div class="blogs-text">
+							<div class="info">
+								<span><%= blog.created.toDateString() %></span> <span><%= blog.category %></span>
+							</div>
+							<h3><%= blog.title %></h3>
+							<p><%= blog.subtitle %></p>
+							<a href="/blogs/<%= blog._id %>">Read More</a>
+						</div>
+					</div>
+				<% });%>
+
+				<div class="box latest" >
+					<div class="img">
+						<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+					</div>
+					<div class="blogs-text">
+						<div class="info">
+							<span>27 Mar 2019</span> <span>Design</span>
+						</div>
+						<h3>Make your Marketing Website</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+						<a href="">Read More</a>
+					</div>
+				</div>
+			
+			
+				<div class="box popular" >
+					<div class="img">
+						<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+					</div>
+					<div class="blogs-text">
+						<div class="info">
+							<span>27 Mar 2019</span> <span>Design</span>
+						</div>
+						<h3>Make your Marketing Website</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+						<a href="">Read More</a>
+					</div>
+				</div>
+			
+			
+				<div class="box popular" >
+					<div class="img">
+						<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+					</div>
+					<div class="blogs-text">
+						<div class="info">
+							<span>27 Mar 2019</span> <span>Design</span>
+						</div>
+						<h3>Make your Marketing Website</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+						<a href="">Read More</a>
+					</div>
+				</div>
+			
+			
+				<div class="box popular" >
+					<div class="img">
+						<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+					</div>
+					<div class="blogs-text">
+						<div class="info">
+							<span>27 Mar 2019</span> <span>Design</span>
+						</div>
+						<h3>Make your Marketing Website</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+						<a href="">Read More</a>
+					</div>
+				</div>
+			
+			
+				<div class="box popular" >
+					<div class="img">
+						<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+					</div>
+					<div class="blogs-text">
+						<div class="info">
+							<span>27 Mar 2019</span> <span>Design</span>
+						</div>
+						<h3>Make your Marketing Website</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+						<a href="">Read More</a>
+					</div>
+				</div>
+			
+			
+				<div class="box popular" >
+					<div class="img">
+						<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+					</div>
+					<div class="blogs-text">
+						<div class="info">
+							<span>27 Mar 2019</span> <span>Design</span>
+						</div>
+						<h3>Make your Marketing Website</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+						<a href="">Read More</a>
+					</div>
+				</div>
+			
+			
+				<div class="box popular" >
+					<div class="img">
+						<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+					</div>
+					<div class="blogs-text">
+						<div class="info">
+							<span>27 Mar 2019</span> <span>Design</span>
+						</div>
+						<h3>Make your Marketing Website</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+						<a href="">Read More</a>
+					</div>
+				</div>
+			
+			
+				<div class="box popular" >
+					<div class="img">
+						<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+					</div>
+					<div class="blogs-text">
+						<div class="info">
+							<span>27 Mar 2019</span> <span>Design</span>
+						</div>
+						<h3>Make your Marketing Website</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+						<a href="">Read More</a>
+					</div>
+				</div>
+			
+			
+				<div class="box popular" >
+					<div class="img">
+						<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+					</div>
+					<div class="blogs-text">
+						<div class="info">
+							<span>27 Mar 2019</span> <span>Design</span>
+						</div>
+						<h3>Make your Marketing Website</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+						<a href="">Read More</a>
+					</div>
+				</div>
+			
+			</div>
+			<div class="row">
+				<p class="own">Add a new blog post</p>
+			</div>
+			<div class="contact-form">
+				<div class="row">
+					<div class="col-12 name-input delete-input">
+						<input type="text" class="form-control input" name="comment" autocomplete="off" required>
+						<label for="comment" class="label-name">
+							<span class="content-name" >Enter password</span>
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="link text-right dummy-button">
+						<button >Enter</button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="link text-right delete-button">
+						<a href="/blogs/new">New post</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- end blogs -->
+	<!-- footer -->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="logo">
+					<a href="/">
+						Hauwa Lawal
+					</a>
+				</div>
+				<div class="social">
+					<a href=""><i class="fab fa-facebook-f"></i></a>
+					<a href=""><i class="fab fa-twitter"></i></a>
+					<a href=""><i class="fab fa-instagram"></i></a>
+					<a href=""><i class="fab fa-linkedin-in"></i></a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- end footer -->
+	<!-- copyright -->
+	<section class="copyright">
+		<div class="container">
+			<p>&copy; 2020 copyright all right reserved | designed by <a href="">Danfo creative studios</a></p>
+		</div>
+	</section>
+
+
+	<!-- end copyright -->
+		
+				
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+	<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+	<script type="text/javascript" src="/js/blog.js"></script>		
+	<body>
+<html>
+

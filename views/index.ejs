@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> upload | Hauwa Lawal</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="none">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style type="text/css">
+  	img{
+  		width: 100%;
+  	}
+  </style>
+</head>
+<body>
+
+
+<div class="container">
+	<div >
+		<h1 style="margin-top: 20px; text-align: center;">Uploads</h1>
+		<div style="max-width: 600px; min-width: 300px; margin: 25px auto; ">
+			<form action="/api/signup" method="POST" enctype="multipart/form-data">
+				<div class="custom-file mb-3">
+			      <input type="file" class="custom-file-input" id="customFile" name="galleryPhoto">
+			      <label class="custom-file-label" for="customFile">Choose file</label>
+			    </div>
+				<button style="margin-top: 10px;" class="btn btn-lg btn-primary btn-block">Submit!</button>
+			</form>
+			<hr>
+			<% if(users.length > 0){  %>
+				<% users.slice().reverse().forEach(function(user){%>
+					<div class="card card-body mb-3">
+						<% var str = user.galleryPhoto %>
+						<% var res = str.slice(63, 1000) %>
+						<a href="http://d3sui4ciodo0wv.cloudfront.net/<%= res %>"><img src="http://d3sui4ciodo0wv.cloudfront.net/<%= res %>"></a>
+						<form action="/<%= user._id %>?_method=DELETE"  method="POST">
+							<button class="btn btn-danger btn-block">Delete</button>
+						</form>
+					</div>
+				<% }) %>
+			<% } else {  %>
+				<p> no files to show</p>
+			<% }%>
+		</div>
+	</div>
+<script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="<%= blog.subtitle%>">
+    <meta property="og:title" content="<%= blog.title%> | Hauwa Lawal" >
+    <meta property="og:url" content="https://glacial-beach-73287.herokuapp.com/blogs/<%= blog._id %>">
+    <meta property="og:image" content="<%= blog.image%>" >
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="<%= blog.subtitle%>">
+    <!-- Twitter Card data -->
+	<meta name="twitter:site" content="@publisher_handle">
+	<meta name="twitter:title" content="<%= blog.title%> | Hauwa Lawal">
+	<meta name="twitter:description" content="<%= blog.subtitle%>">
+	<meta name="twitter:creator" content="@author_handle">
+	<!-- Twitter summary card with large image must be at least 280x150px -->
+	<meta name="twitter:image:src" content="<%= blog.image%>">
+	<link rel="canonical" href="https://glacial-beach-73287.herokuapp.com/blogs/<%= blog._id %>">
+	<title><%= blog.title%> | Hauwa Lawal</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<!-- <script src="https://kit.fontawesome.com/578088c2b0.js" crossorigin="anonymous"></script> -->
+	<script type="text/javascript"> (function() { var css = document.createElement('link'); css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css'; css.rel = 'stylesheet'; css.type = 'text/css'; document.getElementsByTagName('head')[0].appendChild(css); })(); </script>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/show.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Satisfy&display=swap" rel="stylesheet">
+</head>
+	<body>
+		<header>
+			<div class="menu-toggler">
+				<div class="bar half start"></div>
+				<div class="bar"></div>
+				<div class="bar half end"></div>
+			</div>
+			<nav class="top-nav">
+				<ul class="nav-list">
+					<li>
+						<a href="/" class="nav-link link">Home</a>
+					</li>
+					<li>
+						<a href="/#about" class="nav-link">About</a>
+					</li>
+					<li>
+						<a href="/#services" class="nav-link">Services</a>
+					</li>
+					<li>
+						<a href="/#skills" class="nav-link">Skills</a>
+					</li>
+					<li>
+						<a href="/#testimonials" class="nav-link">Testimonials</a>
+					</li>
+					<li>
+						<a href="/blogs" class="nav-link link">Blog</a>
+					</li>
+					<li>
+						<a href="/#contact" class="nav-link">Contact</a>
+					</li>
+				</ul>
+			</nav>
+			<div class="brand-name">
+				<a href="/"><h1>Hauwa Lawal</h1></a>
+			</div>
+		</header>
+		<!-- end header -->
+		 <div class="masthead" style="background-image: url('<%= blog.image%>')">
+	        <div class="overlay"></div>
+	        <div class="container">
+	          <div class="row">
+	            <div class="col-lg-8 col-md-10 mx-auto">
+	              <div class="page-heading">
+	                <h1><%= blog.title%> which would lead to the end of time as we know it.</h1>
+	                <span class="subheading"><%= blog.subtitle%></span>
+	              </div>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	  		
+	      <!-- Main Content -->
+	    <div class="content">
+	      <div class="container">
+	      	<div class="row">
+	      		<div class="col-lg-9 col-md-10 mx-auto info">
+		      		<div class="date">
+		      			<span><i class="fas fa-calendar-alt"></i> <%= blog.created.toDateString() %></span>
+		      		</div>
+		      		<div class="category">
+		      			<span><i class="fas fa-tasks"></i> <%= blog.category%></span>
+		      		</div>
+	      		</div>
+	      	</div>
+	        <div class="row">
+	          <div class="col-lg-9 col-md-10 mx-auto">
+	                <%- blog.text %>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+	      <hr>
+	      <!-- end main content -->
+	      <!-- social links -->
+	      <div class="share container">
+		      <div class=" col-lg-9 col-md-10 mx-auto">
+		      	<div class="">
+		      		<div class="section-title">
+			      		Share this post 
+			      	</div>
+		      	</div>
+		      	<div class="">
+		      		<div class="social-links">
+						<a href=""><i class="fab fa-facebook-f"></i></a>
+						<a href=""><i class="fab fa-twitter"></i></a>
+						<a href=""><i class="fab fa-instagram"></i></a>
+						<a href=""><i class="fab fa-linkedin-in"></i></a>
+					</div>
+		      	</div>
+		      </div>
+	      </div>
+	      <!-- end social links -->
+	      <!-- comments  -->
+	      	<div class="comment-section">
+	      		<div class="container">
+	      			<div class="row">
+	      				<form class="contact-form" action="/blogs/<%= blog._id %>/comments" method="POST">
+							<div class="row">
+								<div class="text">
+									<div class="comment-no">
+										<% var no = blog.comments.length; %>
+										<% for (var i = 0; i < blog.comments.length; i++) {%>
+										<% 	no += parseInt(blog.comments[i].comments.length); %>
+										<% }; %>
+										<% if( no === 0 || no > 1){ %>
+										<%= no %> comments
+										<% } else if ( no === 1 ) { %>
+										<%= no %> comment
+										<% }%>
+									</div>
+									<div class="new-comment">Add a public comment</div>
+								</div>
+							</div>
+							<div class="row space-between">
+								<div class="col-6 name-input">
+									<input type="text" class="form-control input" name="name" required autocomplete="off">
+									<label for="name" class="label-name">
+										<span class="content-name" >Name</span>
+									</label>
+								</div>
+								<div class="col-6 name-input">
+									<input type="text" class="form-control input" name="email" autocomplete="off" required>
+									<label for="email" class="label-name">
+										<span class="content-name" >Email</span>
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 name-input">
+									<input type="text" class="form-control input" name="comment" autocomplete="off" required>
+									<label for="comment" class="label-name">
+										<span class="content-name" >Comment</span>
+									</label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="button text-right">
+									<button>Comment</button>
+								</div>
+							</div>
+						</form>
+						<hr>
+						<%blog.comments.forEach(function (comment){%>
+							<div class="comment">
+								<div class="">
+									<div class="row">
+										<div class="col-10">
+											<h4 class="name"><%= comment.name %></h4>
+											<h4 class="date"><%= comment.created.toDateString() %></h4>
+										</div>
+										<div class="col-2">
+											<div class="Delete">Delete</div>
+										</div>
+									</div>
+									<div class="row">
+										<span class="comment-text"><%= comment.comment %></span>
+									</div>
+									<div class="row">
+										<span class="Reply">Reply</span>
+										<% var no = comment.comments.length; %>
+										<% if( no === 0){ %>
+
+										<% } else if (no === 1){ %>
+											<span class="show-reply"><i class="fas fa-sort-down block fade-in"></i><i class="fas fa-sort-up"></i> <span class="show-reply-text">Show</span> <%= no %> reply</span> 
+										<% } else if (no > 1) { %>
+										 	<span class="show-reply"><i class="fas fa-sort-down block fade-in"></i><i class="fas fa-sort-up"></i> <span class="show-reply-text">Show</span> <%= no %> replies</span> 
+										<% } %>
+										
+									</div>
+									<form class="contact-form" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>" method="POST">
+										<div class="row space-between">
+											<div class="col-6 name-input Reply-form">
+												<input type="text" class="form-control input" name="name" required autocomplete="off">
+												<label for="name" class="label-name">
+													<span class="content-name" >Name</span>
+												</label>
+											</div>
+											<div class="col-6 name-input Reply-form">
+												<input type="text" class="form-control input" name="email" autocomplete="off" required>
+												<label for="email" class="label-name">
+													<span class="content-name" >Email</span>
+												</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-12 name-input Reply-form">
+												<input type="text" class="form-control input" name="comment" autocomplete="off" required>
+												<label for="comment" class="label-name">
+													<span class="content-name" >Comment</span>
+												</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="button text-right Reply-form">
+												<button>Reply</button>
+											</div>
+										</div>
+									</form>
+									<div class="contact-form">
+										<div class="row">
+											<div class="col-12 name-input Delete-input">
+												<input type="text" class="form-control Input" name="comment" autocomplete="off" required>
+												<label for="comment" class="label-name">
+													<span class="content-name" >Enter your email</span>
+												</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-12 name-input">
+												<input type="text" class="form-control Input True-input" name="comment" autocomplete="off" required value="<%= comment.email %>">
+												<label for="comment" class="label-name">
+													<span class="content-name" >Enter your email</span>
+												</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="button Dummy-button text-right">
+												<button >Enter</button>
+											</div>
+										</div>
+										<div class="row">
+											<form class="button Delete-button text-right" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+												<button >Delete</button>
+											</form>
+										</div>
+									</div>
+									<hr>
+									<% comment.comments.forEach(function(sComment) {%>
+										<div class="">
+											<div class="comment-reply col-md-10">
+												<div class="row">
+													<div class="col-6">
+														<h4 class="name"><%= sComment.name %></h4>
+														<h4 class="date"><%= sComment.created.toDateString() %></h4>
+													</div>
+													<div class="col-6">
+														<div class="delete">Delete</div>
+													</div>
+												</div>
+												<div class="row">
+													<span class="comment-text"><%= sComment.comment %></span>
+												</div>
+												<div class="row">
+													<span class="reply">Reply</span>
+												</div>
+												<form class="contact-form" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>" method="POST">
+													<div class="row space-between">
+														<div class="col-6 name-input reply-form">
+															<input type="text" class="form-control input" name="name" required autocomplete="off">
+															<label for="name" class="label-name">
+																<span class="content-name" >Name</span>
+															</label>
+														</div>
+														<div class="col-6 name-input reply-form">
+															<input type="text" class="form-control input" name="email" autocomplete="off" required>
+															<label for="email" class="label-name">
+																<span class="content-name" >Email</span>
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-12 name-input reply-form">
+															<input type="text" class="form-control input" name="comment" autocomplete="off" required>
+															<label for="comment" class="label-name">
+																<span class="content-name" >Comment</span>
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="button text-right reply-form">
+															<button>Reply</button>
+														</div>
+													</div>
+												</form>
+												<div class="contact-form">
+													<div class="row">
+														<div class="col-12 name-input delete-input">
+															<input type="text" class="form-control input" name="comment" autocomplete="off" required>
+															<label for="comment" class="label-name">
+																<span class="content-name" >Enter your email</span>
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-12 name-input">
+															<input type="text" class="form-control input true-input" name="comment" autocomplete="off" required value="<%= sComment.email %>">
+															<label for="comment" class="label-name">
+																<span class="content-name" >Enter your email</span>
+															</label>
+														</div>
+													</div>
+													<div class="row">
+														<div class="button text-right dummy-button">
+															<button >Enter</button>
+														</div>
+													</div>
+													<div class="row">
+														<form class="button text-right delete-button" action="/blogs/<%= blog._id %>/comments/<%= sComment._id %>?_method=DELETE" method="POST">
+															<button >Delete</button>
+														</form>
+													</div>
+												</div>
+												<hr>
+											</div>
+										</div>
+									<% }) %>
+								</div>
+							</div>
+						<% }) %>
+	      			</div>
+	      		</div>
+	      	</div>
+	      <!-- end comments -->
+	      <!-- related  -->
+      	<section class="related" >
+			<div class="container">
+				<div class="row">
+					<div class="section-title">
+						<h1>Related posts</h1>
+						<p class="small"> check out other interesting posts in this category </p>
+					</div>
+				</div>
+				<div class="row">
+					<div id="container">
+						<div id="objects">
+							<%blogs.slice().reverse().forEach(function(allBlog){ %>
+								<% if ( blog.category === allBlog.category ) { %>
+									<% if (blog.text !== allBlog.text) {%>
+										<div class="object">
+										  	<div class="box latest" >
+												<div class="img">
+													<a href="/blogs/<%= allBlog._id %>"><img src="<%= allBlog.image%>" alt="<%= allBlog.title %>"></a>
+												</div>
+												<div class="blogs-text">
+													<div class="info">
+														<span><%= allBlog.created.toDateString() %></span> <span><%= allBlog.category %></span>
+													</div>
+													<h3><%= allBlog.title %></h3>
+													<p><%= allBlog.subtitle %></p>
+													<a href="/blogs/<%= allBlog._id %>">Read More</a>
+												</div>
+											</div>
+										</div>
+									<% } %>
+								<% } %>
+							<% });%>
+						  
+						  
+						  
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						  <div class="object">
+						  	<div class="box latest" >
+								<div class="img">
+									<img src="http://d3sui4ciodo0wv.cloudfront.net/1124ce8d24082cbd662b390faf371228%20%281%29.jpg" alt="blogs">
+								</div>
+								<div class="blogs-text">
+									<div class="info">
+										<span>27 Mar 2019</span> <span>Design</span>
+									</div>
+									<h3>Make your Marketing Website</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel dui vel eros tempus dignissim...</p>
+									<a href="">Read More</a>
+								</div>
+							</div>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="button text-right ">
+						<a href="/blogs">Check out all our blog posts </a>
+					</div>
+				</div>
+				<div class="row">
+					<p class="own">Own this blog post?</p>
+				</div>
+				<div class="contact-form">
+					<div class="row">
+						<div class="col-12 name-input delete-input">
+							<input type="text" class="form-control input" name="comment" autocomplete="off" required>
+							<label for="comment" class="label-name">
+								<span class="content-name" >Enter password</span>
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="button text-right dummy-button">
+							<button >Enter</button>
+						</div>
+					</div>
+					<div class="row">
+						<form class="button text-right delete-button" action="/blogs/<%= blog._id %>?_method=DELETE"  method="POST">
+							<button >Delete</button>
+						</form>
+					</div>
+					<div class="row">
+						<div class="button text-right delete-button" action="" method="POST">
+							<a href="/blogs/<%= blog._id %>/edit" method="POST">Edit</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	      <!-- related -->
+	    
+	    <!-- Footer -->
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="logo">
+						<a href="/">
+							Hauwa Lawal
+						</a>
+					</div>
+					<div class="social">
+						<a href=""><i class="fab fa-facebook-f"></i></a>
+						<a href=""><i class="fab fa-twitter"></i></a>
+						<a href=""><i class="fab fa-instagram"></i></a>
+						<a href=""><i class="fab fa-linkedin-in"></i></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- end footer -->
+		<!-- copyright -->
+		<section class="copyright">
+			<div class="container">
+				<p>&copy; 2020 copyright all right reserved | designed by <a href="">Danfo creative studios</a></p>
+			</div>
+		</section>
+		<!-- end copyright -->
+	
+
+		
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/js/show.js"></script>
+	<body>
+<html>

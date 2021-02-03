@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="robots" content="none">
+		<title>Edit <%= blog.title %> | Hauwa Lawal</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://kit.fontawesome.com/578088c2b0.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/edit.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto|Satisfy&display=swap" rel="stylesheet">
+	</head>
+	<body>
+
+		
+		<header>
+			<div class="menu-toggler">
+				<div class="bar half start"></div>
+				<div class="bar"></div>
+				<div class="bar half end"></div>
+			</div>
+			<nav class="top-nav">
+				<ul class="nav-list">
+					<li>
+						<a href="/" class="nav-link link">Home</a>
+					</li>
+					<li>
+						<a href="/#about" class="nav-link">About</a>
+					</li>
+					<li>
+						<a href="/#services" class="nav-link">Services</a>
+					</li>
+					<li>
+						<a href="/#skills" class="nav-link">Skills</a>
+					</li>
+					<li>
+						<a href="/#testimonials" class="nav-link">Testimonials</a>
+					</li>
+					<li>
+						<a href="/blogs" class="nav-link link">Blog</a>
+					</li>
+					<li>
+						<a href="/#contact" class="nav-link">Contact</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div class="form">
+			<div class="container">
+				<div class="row">
+					<div class="section-title text-center">
+						<h1> Edit <%= blog.title %></h1>
+					</div>
+				</div>
+				<div >
+					<div class="contact-form">
+						<form action="/blogs/<%= blog._id%>?_method=PUT" method="POST" id="course_form">
+							<div class="label">Title</div>
+							<div class="col-12">
+								<input type="text" class="form-control" name="title" placeholder="title" value="<%= blog.title %>">
+							</div>
+			   				<!-- <div id="editor">This is some sample content.</div> -->
+
+							<div class="label">Subtitle</div>
+							<div class="col-12">
+								<input type="text" class="form-control" name="subtitle" placeholder="Blog  Subtitle" value="<%= blog.subtitle %>">
+							</div>
+							<div class="label">Category</div>
+							<div class="col-12">
+								<input type="text" class="form-control" name="category" placeholder="Blog Category" value="<%= blog.category %>">
+							</div>
+							<div class="label">Cover photo</div>
+							<div class="col-12">
+								<input type="text" class="form-control" name="image" placeholder="Blog Category" value="<%= blog.image %>">
+								<div class="col-10"><img src="<%= blog.image %>" class="img" ></div>
+							</div>
+						    <div class="label">Blog text</div>
+						    <div class="col-12">
+						    	<textarea name="text" id="editor" ></textarea>
+						    	<textarea style="display: none" name="" id="tricky" cols="30" rows="10"><%= blog.text %></textarea>
+						    </div>
+						    <div class="row button">
+						    	<input type="submit" class="submit">
+						    </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+
+		<script src="https://cdn.ckeditor.com/ckeditor5/18.0.0/classic/ckeditor.js"></script>
+        <script>
+        	var blog = document.getElementById("tricky").value;
+            ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .then( editor => {
+                console.log( editor );
+            	editor.setData( blog );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+
+
+        </script>
+
+
+		<!-- footer -->
+			<footer>
+				<div class="container">
+					<div class="row">
+						<div class="logo">
+							Hauwa Lawal
+						</div>
+						<div class="social">
+							<a href=""><i class="fab fa-facebook-f"></i></a>
+							<a href=""><i class="fab fa-twitter"></i></a>
+							<a href=""><i class="fab fa-instagram"></i></a>
+							<a href=""><i class="fab fa-linkedin-in"></i></a>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<!-- end footer -->
+			<!-- copyright -->
+			<section class="copyright">
+				<div class="container">
+					<p>&copy; 2020 copyright all right reserved | designed by <a href="">Danfo creative studios</a></p>
+				</div>
+			</section>
+
+
+			<!-- end copyright -->
+
+
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" ></script>
+		<script type="text/javascript" src="/js/new.js"></script>
+
+	<body>
+<html>

@@ -1,4 +1,4 @@
-# portfolio-website
+# Portfolio-website
 This is a full portfolio website with a personal blog
 ## Table of contents
 * [General info](#general-info)
